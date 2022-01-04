@@ -1,7 +1,7 @@
 {
   "name": "@nkp/is-promise",
   "sideEffects": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Utility functions for determining if values are Promises or Promise-Like's.",
   "main": "cjs/index.js",
   "module": "es/index.js",
