@@ -1,21 +1,21 @@
 {
-  "name": "---NPM-PACKAGE-IDENTIFIER---",
+  "name": "@nkp/is-promise",
   "sideEffects": false,
   "version": "0.0.0",
-  "description": "---PACKAGE-DESCRIPTION---",
+  "description": "Utility functions for determining if values are Promises or Promise-Like's.",
   "main": "cjs/index.js",
   "module": "es/index.js",
   "author": "Nick Kelly",
-  "homepage": "---GITHUB-URL---#readme",
-  "readme": "---GITHUB-URL---#readme",
+  "homepage": "https://github.com/NickKelly1/nkp-is-promise.git#readme",
+  "readme": "https://github.com/NickKelly1/nkp-is-promise.git#readme",
   "license": "MIT",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "---GITHUB-URL---"
+    "url": "https://github.com/NickKelly1/nkp-is-promise.git"
   },
   "bugs": {
-    "url": "---GITHUB-URL---/issues"
+    "url": "https://github.com/NickKelly1/nkp-is-promise.git/issues"
   },
   "keywords": [
     "TypeScript",
@@ -44,7 +44,7 @@
     "rimraf": "^3.0.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-typescript2": "^0.31.1",
-    "rollup": "^2.62.0",
+    "rollup": "^2.63.0",
     "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"

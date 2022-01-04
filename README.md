@@ -1,61 +1,67 @@
-# Nkp package template
+# @nkp/is-promise
 
-Template for @nkp/ npm packages.
+[![npm version](https://badge.fury.io/js/%40nkp%2Fis-promise.svg)](https://www.npmjs.com/package/@nkp/is-promise)
+[![deploy status](https://github.com/NickKelly1/nkp-is-promise/actions/workflows/release.yml/badge.svg)](https://github.com/NickKelly1/nkp-is-promise/actions/workflows/release.yml)
+[![known vulnerabilities](https://snyk.io/test/github/NickKelly1/nkp-is-promise/badge.svg)](https://snyk.io/test/github/NickKelly1/nkp-is-promise)
 
-This tempalte uses pnpm as a package manager instead of npm or yarn.
+Utility functions for determining if values conform to the Promise or PromiseLike interfaces.
 
-Pnpm improves local development by symbolically linking dependencies and speeding up the installation process.
 
-Comes with:
+```ts
+// interface
 
-1. Language: TypeScript & JavaScript
-2. Linting: Eslint
-3. Testing: Jest
-    - Support TypeScript test files
-    - Support e2e and unit tests
-    - Easy to configure for DOM testing
-4. Building: Rollup
-    1. Builds commonjs
-    2. Builds ES Modules (targets package.json#module)
-        - Package consumers using build tools such as `rollup` and `webpack` target package.json#module, the ES Module export of the package, for tree shaking. Tree shaking generates smaller packages and reduces build times.
-5. CI: GitHub actions
-    - Builds, tests and publishes to `npm` when a new release is created on GitHub.
+/**
+ * Does the unknown value conform to the Promise interface?
+ *
+ * @param value the value
+ * @returns     whether the value is promise-like
+ */
+declare function isPromise<T>(value: PromiseLike<T> | unknown): value is Promise<T>;
 
-## Getting started
+/**
+ * Does the unknown value conform to the PromiseLike interface?
+ *
+ * @param value the value
+ * @returns     whether the value is promise-like
+ */
+declare function isPromiseLike<T>(value: PromiseLike<T> | unknown): value is PromiseLike<T>;
 
-1. Clone the repository
-    - `git clone git@github.com:NickKelly1/nkp-template.git`
-    - (optional): use GitHub's `template` feature.
-2. Install dependencies and run tests
-    1. If using nvm, run `nvm use` to set the NodeJS version
-    2. run `npm install`
-    3. run `npm test`
-3. Find and replace placeholders in the project
-    1. ---PACKAGE-DESCRIPTION---
-    2. ---NPM-PACKAGE-IDENTIFIER---
-    6. ---NPM-PACKAGE-ORG-NAME---
-    7. ---NPM-PACKAGE-NAME---
-    3. ---GITHUB-URL---
-    4. ---GITHUB-ORG-NAME---
-    5. ---GITHUB-PROJECT-NAME---
-    8. ---DESCRIPTION-TEXT---
-    9. ---USAGE-TEXT---
-4. Remove stubs and reset the repos state
-    1. Remove the contents of `src/index.ts`
-    2. set the testEnvironment in `jest.config.ts
-    3. Remove `src/examples`
-5. Add an NPM_TOKEN to the repository for CI
-    1. Using npmjs, generate a CI token
-    2. Add the token to this GitHub repositories secrets as "NPM_TOKEN"
-6. Set up the README.MD
+/**
+ * Does the PromiseLike value conform to the Promise interface?
+ *
+ * @param value the PromiseLike value
+ * @returns     whether the value is a Promise
+ */
+declare function andIsPromise<T>(like: PromiseLike<T>): like is Promise<T>;
+```
 
-## @---NPM-PACKAGE-ORG-NAME---/---NPM-PACKAGE-NAME---
 
-[![npm version](https://badge.fury.io/js/%40---NPM-PACKAGE-ORG-NAME---%2F---NPM-PACKAGE-NAME---.svg)](https://www.npmjs.com/package/@---NPM-PACKAGE-ORG-NAME---/---NPM-PACKAGE-NAME---)
-[![deploy status](https://github.com/---GITHUB-ORG-NAME---/---GITHUB-PROJECT-NAME---/actions/workflows/release.yml/badge.svg)](https://github.com/---GITHUB-ORG-NAME---/---GITHUB-PROJECT-NAME---/actions/workflows/release.yml)
-[![known vulnerabilities](https://snyk.io/test/github/---GITHUB-ORG-NAME---/---GITHUB-PROJECT-NAME---/badge.svg)](https://snyk.io/test/github/---GITHUB-ORG-NAME---/---GITHUB-PROJECT-NAME---)
+```ts
+// usage
 
----DESCRIPTION-TEXT---
+import { isPromise, isPromiseLike, andIsPromise, } from '@nkp/is-promise';
+
+// isPromiseLike
+console.log(isPromiseLike(new Promise<void>((res) => res())));      // true
+console.log(isPromiseLike(Promise.reject()));                       // true
+console.log(isPromiseLike(Promise.resolve().catch(() => {})));      // true
+console.log(isPromiseLike({ then() {}, catch() {}, }));             // true
+console.log(isPromiseLike({ then: () => {}, catch: () => {}, }));   // true
+console.log(isPromiseLike({ then: () => {}, }));                    // true
+console.log(isPromiseLike({ catch: () => {}, }));                   // false
+
+// isPromise
+console.log(isPromise(new Promise<void>((res) => res())));      // true
+console.log(isPromise(Promise.resolve()));                      // true
+console.log(isPromise(Promise.reject().catch(() => {})));       // true
+console.log(isPromise({ then() {}, catch() {}, }));             // true
+console.log(isPromise({ then: () => {}, catch: () => {}, }));   // true
+console.log(isPromise({ then: () => {}, }));                    // false
+console.log(isPromise({ catch: () => {}, }));                   // false
+
+// andIsPromise
+// takes a PromiseLike value and determines if it is actually a promise
+```
 
 ## Table of contents
 
@@ -64,7 +70,6 @@ Comes with:
   - [yarn](#yarn)
   - [pnpm](#pnpm)
   - [Exports](#exports)
-- [Usage](#usage)
 - [Updating Dependencies](#updating-dependencies)
 
 ## Installation
@@ -72,28 +77,24 @@ Comes with:
 ### NPM
 
 ```sh
-npm install @---NPM-PACKAGE-ORG-NAME---/---NPM-PACKAGE-NAME---
+npm install @nkp/is-promise
 ```
 
 ### Yarn
 
 ```sh
-yarn add @---NPM-PACKAGE-ORG-NAME---/---NPM-PACKAGE-NAME---
+yarn add @nkp/is-promise
 ```
 
 ### PNPM
 
 ```sh
-pnpm add @---NPM-PACKAGE-ORG-NAME---/---NPM-PACKAGE-NAME---
+pnpm add @nkp/is-promise
 ```
 
 ### Exports
 
-`@---NPM-PACKAGE-ORG-NAME---/---NPM-PACKAGE-NAME---` targets CommonJS and ES modules. To utilise ES modules consider using a bundler like `webpack` or `rollup`.
-
-## Usage
-
----USAGE-TEXT---
+`@nkp/is-promise` targets CommonJS and ES modules. To utilise ES modules consider using a bundler like `webpack` or `rollup`.
 
 ## Updating dependencies
 
