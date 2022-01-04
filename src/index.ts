@@ -1,8 +1,8 @@
 /**
  * Does the unknown value conform to the Promise interface?
  *
- * @param value the value
- * @returns     whether the value is promise-like
+ * @param value   any value
+ * @returns       whether the value is Promise
  */
 export function isPromise<T>(value: PromiseLike<T> | unknown): value is Promise<T> {
   // must have `then`
@@ -16,8 +16,8 @@ export function isPromise<T>(value: PromiseLike<T> | unknown): value is Promise<
 /**
  * Does the unknown value conform to the PromiseLike interface?
  *
- * @param value the value
- * @returns     whether the value is promise-like
+ * @param value   any value
+ * @returns       whether the value is a PromiseLike
  */
 export function isPromiseLike<T>(value: PromiseLike<T> | unknown): value is PromiseLike<T> {
   // must be defined
@@ -33,8 +33,8 @@ export function isPromiseLike<T>(value: PromiseLike<T> | unknown): value is Prom
 /**
  * Does the PromiseLike value conform to the Promise interface?
  *
- * @param value the PromiseLike value
- * @returns     whether the value is a Promise
+ * @param like    PromiseLike value
+ * @returns       whether the value is a Promise
  */
 export function andIsPromise<T>(like: PromiseLike<T>): like is Promise<T> {
   // must have `catch` function
