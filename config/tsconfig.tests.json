@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "include": [
+    "../src/tests/**.ts",
+    "../src/**/*.spec.ts",
+    "../src/**/*.test.ts",
+    "../src/**/*.spec.util.ts",
+    "../src/**/*.spec.util.ts",
+    "../src/**/*.spec.util.mock.ts",
+    "../src/**/*.spec.util.mock.ts",
+  ],
+  "compilerOptions": {
+    "outDir": "../dist.tests",
+    "module": "CommonJS",
+    "noEmit": false,
+  }
+}

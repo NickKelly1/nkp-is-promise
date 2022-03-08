@@ -69,55 +69,26 @@ console.log(isPromise({ catch: () => {}, }));                   // false
   - [npm](#npm)
   - [yarn](#yarn)
   - [pnpm](#pnpm)
-  - [Exports](#exports)
 - [Updating Dependencies](#updating-dependencies)
 
 ## Installation
 
-### NPM
+### npm
 
 ```sh
 npm install @nkp/is-promise
 ```
 
-### Yarn
+### yarn
 
 ```sh
 yarn add @nkp/is-promise
 ```
 
-### PNPM
+### pnpm
 
 ```sh
 pnpm add @nkp/is-promise
-```
-
-### Exports
-
-`@nkp/is-promise` targets CommonJS and ES modules. To utilise ES modules consider using a bundler like `webpack` or `rollup`.
-
-## Updating dependencies
-
-To update dependencies run one of
-
-```sh
-# if npm
-# update package.json
-npx npm-check-updates -u
-# install
-npm install
-
-# if yarn
-# update package.json
-yarn create npm-check-updates -u
-# install
-yarn
-
-# if pnpm
-# update package.json
-pnpx npm-check-updates -u
-# install
-pnpm install
 ```
 
 ## Publishing
