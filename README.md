@@ -69,7 +69,7 @@ console.log(isPromise({ catch: () => {}, }));                   // false
   - [npm](#npm)
   - [yarn](#yarn)
   - [pnpm](#pnpm)
-- [Updating Dependencies](#updating-dependencies)
+- [Publishing](#publishing)
 
 ## Installation
 
